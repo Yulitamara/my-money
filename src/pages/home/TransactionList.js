@@ -4,8 +4,7 @@ import { useFirestore } from "../../hooks/useFirestore";
 import styles from "./Home.module.css";
 
 export default function TransactionList({ transactions }) {
-  const { deletedDocument, response } = useFirestore("transactions");
-  console.log(response);
+  const { deleteDocument } = useFirestore("transactions");
 
   return (
     <ul className={styles.transactions}>
@@ -13,7 +12,7 @@ export default function TransactionList({ transactions }) {
         <li key={transaction.id}>
           <p className={styles.name}>{transaction.name}</p>
           <p className={styles.amount}>${transaction.amount}</p>
-          <button onClick={() => deletedDocument(transaction.id)}>x</button>
+          <button onClick={() => deleteDocument(transaction.id)}>x</button>
         </li>
       ))}
     </ul>
